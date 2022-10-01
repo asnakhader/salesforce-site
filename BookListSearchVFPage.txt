@@ -1,0 +1,53 @@
+<apex:page controller="myController" tabStyle="BookList__c" title="Form"   sidebar="true" expires="600">
+<html>
+ 
+<body>
+ 
+<apex:form >
+ <apex:pageMessages />
+<apex:pageBlock title="Search Books" id="entireForm" mode="edit">
+<apex:pageMessages id="msg"/>
+ 
+<apex:pageBlockButtons id="buttons">
+
+<apex:commandButton status="pStatus" action="{!searchdata}" value="Search" rerender="pt,msg"/>
+&nbsp;
+<apex:outputLink value="{!$Page.BookList}">Add Books</apex:outputLink>
+&nbsp;
+<apex:outputLink value="{!$Page.BookListEdit}">Update Books</apex:outputLink>
+ 
+</apex:pageBlockButtons>
+ 
+<apex:pageBlockSection title="Search" columns="1" id="pbSection">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="School" for="School__c"/>
+<apex:inputText value="{!school}" id="School"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Grade" for="Grade__c"/>
+ <apex:selectList value="{!grade}" multiselect="false" size="1">
+  <apex:selectOptions value="{!fixedVals}"/>
+ </apex:selectList>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+
+</apex:pageBlock> 
+
+<apex:pageBlock id="pt">
+
+            <apex:pageBlockTable value="{!booklist}" var="c" width="100%;" >
+                <apex:column value="{!c.FB_Name__c}"/>
+                <apex:column value="{!c.School__c}"/>
+                <apex:column value="{!c.Grade__c}"/>
+                <apex:column value="{!c.Phone_Number__c}"/>
+                <apex:column value="{!c.Location__c}"/>
+            </apex:pageBlockTable>
+
+    </apex:pageBlock>
+    
+
+</apex:form> </body> </html> </apex:page>

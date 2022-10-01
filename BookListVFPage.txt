@@ -1,0 +1,73 @@
+<apex:page controller="myController" tabStyle="BookList__c" title="Form" sidebar="true" expires="600">
+<html>
+ 
+<body>
+ 
+<apex:form id="submiform">
+ <apex:pageMessages id="msg"/>
+<apex:pageBlock title="Add Books to Donate" id="entireForm" mode="edit">
+
+ 
+<apex:pageBlockButtons id="buttons">
+
+<apex:commandButton status="pStatus" action="{!submit}" value="Submit" rerender="msg,entireForm"/>
+&nbsp;
+<apex:outputLink value="{!$Page.BookListSearch}">Search Books</apex:outputLink>
+
+&nbsp;
+<apex:outputLink value="{!$Page.BookListEdit}">Update Books</apex:outputLink>
+ 
+</apex:pageBlockButtons>
+
+<apex:pageBlockSection title="Add" columns="2" id="pbSection">
+
+
+<apex:pageBlockSectionItem helpText="Enter valid FB Name so that people can reach out to you if you are not providing phone number..">
+<apex:outputLabel value="FB Name" for="FB_Name__c" styleClass="requiredInput"/>
+<apex:outputPanel styleClass="requiredInput" layout="block">
+<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+<apex:inputText value="{!control.FB_Name__c}" required="true" id="Name"/>
+</apex:outputPanel>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem helpText="Enter a valid email id if you want to remove your books later. Your email will not be visible to others">
+<apex:outputLabel value="Email" for="Email__c"/>
+<apex:inputText value="{!control.Email__c}" id="Email"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Phone Number" for="Phone_Number__c"/>
+<apex:inputText value="{!control.Phone_Number__c}" id="Phone"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Location" for="Location__c" />
+<apex:outputPanel styleClass="requiredInput" layout="block">
+<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+<apex:inputText value="{!control.Location__c}" id="Location" required="true"/>
+</apex:outputPanel>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="School" for="School__c" />
+<apex:outputPanel styleClass="requiredInput" layout="block">
+<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+<apex:inputText value="{!control.School__c}" id="School" required="true"/>
+</apex:outputPanel>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Grade" for="Grade__c"/>
+<apex:outputPanel styleClass="requiredInput" layout="block">
+<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+ <apex:selectList value="{!control.Grade__c}" multiselect="false" required="true" size="1">
+      <apex:selectOptions value="{!fixedVals}"/>
+  </apex:selectList>
+ </apex:outputPanel>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+
+</apex:pageBlock> 
+
+</apex:form> </body> </html> </apex:page>

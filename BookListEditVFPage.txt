@@ -1,0 +1,55 @@
+<apex:page controller="myController" tabStyle="BookList__c" title="Form"   sidebar="true" expires="600">
+<html>
+ 
+<body>
+ 
+<apex:form >
+ 
+<apex:pageBlock title="Update Books" id="entireForm" mode="edit">
+<apex:pageMessages id="msg"/>
+ 
+<apex:pageBlockButtons id="buttons">
+
+<apex:commandButton status="pStatus" action="{!searchdataEdit}" value="Search and Update" rerender="pb,pt,msg"/>
+&nbsp;
+<apex:outputLink value="{!$Page.BookList}">Add Books</apex:outputLink>
+ &nbsp;
+<apex:outputLink value="{!$Page.BookListSearch}">Search Books</apex:outputLink>
+</apex:pageBlockButtons>
+ 
+<apex:pageBlockSection title="Search" columns="2" id="pbSection">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="Email" for="Email__c"/>
+<apex:inputText value="{!email}" id="Email"/>
+</apex:pageBlockSectionItem>
+
+
+
+</apex:pageBlockSection>
+
+</apex:pageBlock> 
+
+<apex:pageBlock id="pt" >
+            <apex:pageBlockTable value="{!booklist}" var="c" width="100%;" >
+                <apex:column value="{!c.FB_Name__c}"/>
+                <apex:column value="{!c.School__c}"/>
+                <apex:column value="{!c.Grade__c}"/>
+                <apex:column value="{!c.Phone_Number__c}"/>
+                <apex:column value="{!c.Location__c}"/>
+             
+                
+                  <apex:column >
+                <apex:commandButton action="{!DeleteAccount}" immediate="true" reRender="pt,msg" value="Remove Book">
+                <apex:param name="rowid" value="{!c.Id}" assignTo="{!SelectedAccountId}"/>
+                </apex:commandButton>
+                 </apex:column>
+                 
+            </apex:pageBlockTable>
+
+    </apex:pageBlock>
+    
+
+
+</apex:form> </body> </html> </apex:page>
